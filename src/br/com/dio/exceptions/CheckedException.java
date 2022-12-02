@@ -5,19 +5,19 @@ import java.io.*;
 
 //Imprimir um arquivo no console.
 public class CheckedException {//
-    public static void main(String[] args) {
+    public static void main(String[] args) {//throws IOException, deveria ter posto antes, mas pra fazer diferente agora devo tirar, vamos tratar aqui dentro com try catch
         String nomeDoArquivo = "romance-blake-crouch.txt";
 
-        try {
+        try {//botando o cursor em cimma do imprimir gera o try catch
             imprimirArquivoNoConsole(nomeDoArquivo);//botar o cursor em cima do método e gerar o exception. se botarmos o nome errado da erro do read file
-        } catch (FileNotFoundException e) {
-            JOptionPane.showMessageDialog(null,
+        } catch (FileNotFoundException e) { // tenho que por esse primeiro, pq se eu colocasse o IO Excep é o mais abrangente e n cairia no específico
+            JOptionPane.showMessageDialog(null, //para mostrar tela pro usuário
                     "Revise o nome do arquivo que você deseja imprimir! " + e.getCause());
             e.printStackTrace();
-        } catch (IOException e){
-            //e.printStackTrace();
+        } catch (IOException e){ // preciso gerar os dois pra ser eficiente
+            e.printStackTrace();// vai mostrar aonde foi o erro inesperado
             JOptionPane.showMessageDialog(null,
-                    "Ocorreu um erro inesperado! Entre em contato com o suporte! " + e.getCause());
+                    "Ocorreu um erro inesperado! Entre em contato com o suporte! " + e.getCause());// pra n ter que especificar aonde aconteceu o erro
         } finally {
             System.out.println("Chegou no finally!");
         }
@@ -25,7 +25,7 @@ public class CheckedException {//
         System.out.println("Apesar da exception ou não, o programa continua...");
     }
 
-    public static void imprimirArquivoNoConsole(String nomeDoArquivo) throws IOException {
+    public static void imprimirArquivoNoConsole(String nomeDoArquivo) throws IOException { // poderia ter feito o try cath por aqui
         File file = new File(nomeDoArquivo); //inicializou um obj do tipo file
 
         BufferedReader br = new BufferedReader(new FileReader(file.getName()));//pra criar um buff com td o doc q quero imprimir. Só consigo rodar o file reader se eu tratar essa exception, por isso é uma checked exception, para gerar botar o cursor em cima do método e add
