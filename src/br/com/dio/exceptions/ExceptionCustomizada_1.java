@@ -11,7 +11,7 @@ public class ExceptionCustomizada_1 {
         System.out.println("\nCom exception ou não, o programa continua...");
     }
 
-    public static void imprimirArquivoNoConsole(String nomeDoArquivo) {
+    public static void imprimirArquivoNoConsole(String nomeDoArquivo) {//tratei dentro, sem lançar
 
         try {
             BufferedReader br = lerArquivo(nomeDoArquivo);
